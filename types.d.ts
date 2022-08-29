@@ -1,3 +1,5 @@
+import { AssetCode } from "aws-cdk-lib/aws-lambda";
+
 export type CDKContext = {
   appName: string;
   region: string;

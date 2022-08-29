@@ -1,4 +1,4 @@
-import { Stack, StackProps, RemovalPolicy } from 'aws-cdk-lib';
+import { Stack, StackProps, RemovalPolicy, StageProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CDKContext } from '../types';
 
@@ -11,12 +11,12 @@ import * as cwLogs from 'aws-cdk-lib/aws-logs';
 import { getLambdaDefinitions, getFunctionProps } from './ratemanager-lambda-config';
 
 export class RatemanagerLambdaStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps, context: CDKContext) {
-    super(scope, id, props);
+  constructor(scope: Construct, stage: string, context: CDKContext) {
+    super(scope, stage);
 
     // Lambda Role
     const lambdaRole = new iam.Role(this, 'lambdaRole', {
-      roleName: `${context.appName}-lambda-role-${context.environment}`,
+      roleName: `${context.appName}-lambda-role-${stage}`,
       description: `Lambda role for ${context.appName}`,
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com')
     });
@@ -40,6 +40,11 @@ export class RatemanagerLambdaStack extends Stack {
         ],
       })
     );
+
+    // VPC
+
+
+
     // Get Lambda definitions
     const lambdaDefinitions = getLambdaDefinitions(context);
 
@@ -60,7 +65,7 @@ export class RatemanagerLambdaStack extends Stack {
 
       // Create corresponding Log Group with one month retention
       new cwLogs.LogGroup(this, `fn-${lambdaDefinition.name}-log-group`, {
-        logGroupName: `/aws/lambda/${context.appName}-${lambdaDefinition.name}-${context.environment}`,
+        logGroupName: `/aws/lambda/${context.appName}-${lambdaDefinition.name}-${stage}`,
         retention: cwLogs.RetentionDays.ONE_MONTH,
         removalPolicy: RemovalPolicy.DESTROY,
       });

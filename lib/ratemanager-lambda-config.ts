@@ -3,6 +3,7 @@ import { LambdaDefinition, CDKContext } from '../types';
 import { NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import { RatemanagerLambdaStack } from './ratemanager-lambda-stack'
 
 // Constants
 const DEFAULT_LAMBDA_MEMORY_MB = 1024;
@@ -33,11 +34,12 @@ export const getFunctionProps = (
   const functionProps: NodejsFunctionProps = {
     functionName: `${context.appName}-${lambdaDefinition.name}-${context.environment}`,
     entry: `lambda-handlers/${lambdaDefinition.name}.ts`,
-    runtime: lambda.Runtime.NODEJS_14_X,
+    runtime: lambda.Runtime.NODEJS_16_X,
     memorySize: lambdaDefinition.memoryMB ? lambdaDefinition.memoryMB : DEFAULT_LAMBDA_MEMORY_MB,
     timeout: lambdaDefinition.timeoutMins ? Duration.minutes(lambdaDefinition.timeoutMins) : Duration.minutes(DEFAULT_LAMBDA_TIMEOUT_MINS),
     environment: lambdaDefinition.environment,
-    role: lambdaRole
+    role: lambdaRole,
   };
   return functionProps;
 };
+

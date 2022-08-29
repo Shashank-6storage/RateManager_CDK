@@ -4,6 +4,9 @@ import * as cdk from 'aws-cdk-lib';
 import { RatemanagerLambdaStack } from '../lib/ratemanager-lambda-stack';
 import gitBranch from 'git-branch';
 import { CDKContext } from '../types';
+import {CodePipeline, CodePipelineSource, ShellStep} from 'aws-cdk-lib/pipelines';
+import { RatemanagerPipeLineStages } from '../lib/setup-stages';
+import { pipeline } from 'stream';
 
 // Get CDK Context based on git branch
 export const getContext = async (app: cdk.App): Promise<CDKContext> => {
@@ -44,7 +47,22 @@ const createStacks = async () => {
       tags,
     };
 
-    new RatemanagerLambdaStack(app, `${context.appName}-stack-${context.environment}`, stackProps, context);
+    //new RatemanagerLambdaStack(app, `${context.appName}-stack-${context.environment}`, stackProps, context);
+
+    const pipeline = new CodePipeline(app, 'pipeline', {
+      pipelineName: `ratemanager-${context.environment}-pipeline`,
+      synth: new ShellStep('Synth', {
+          input: CodePipelineSource.gitHub('Shashank-6storage/RateManager_CDK', 'develop'),
+          commands: [
+              'npm ci',
+              'npm run build',
+              'npm cdk synth'
+          ]
+      })
+  })
+
+  const devStage = pipeline.addStage(new RatemanagerPipeLineStages(app, "develop", context)); 
+
   } catch (error) {
     console.error(error);
   }
