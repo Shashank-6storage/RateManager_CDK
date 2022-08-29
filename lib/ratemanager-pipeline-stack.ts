@@ -4,7 +4,7 @@ import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
 import { Construct } from 'constructs';
 import { CDKContext } from '../types';
 
-export class rateManagerPipeLineStack extends cdk.Stack {
+export class RateManagerPipeLineStack extends cdk.Stack {
     constructor(scope: Construct, id: string, context: CDKContext, props?: cdk.StackProps) {
         super(scope, id, props);
         
