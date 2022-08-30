@@ -33,7 +33,7 @@ export const getFunctionProps = (
   stage: string
 ): NodejsFunctionProps => {
   const functionProps: NodejsFunctionProps = {
-    functionName: `${context.appName}-${lambdaDefinition.name}-stage`,
+    functionName: `${context.appName}-${lambdaDefinition.name}-${stage}`,
     entry: `lambda-handlers/${lambdaDefinition.name}.ts`,
     runtime: lambda.Runtime.NODEJS_14_X,
     memorySize: lambdaDefinition.memoryMB ? lambdaDefinition.memoryMB : DEFAULT_LAMBDA_MEMORY_MB,
