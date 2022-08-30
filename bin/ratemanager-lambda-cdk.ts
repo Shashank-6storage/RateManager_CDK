@@ -6,8 +6,7 @@ import { CDKContext } from '../types';
 import { RateManagerPipeLineStack } from '../lib/ratemanager-pipeline-stack';
 
 // Get CDK Context based on git branch
-export const getContext = async (app: cdk.App): Promise<CDKContext> => {
-  return new Promise(async (resolve, reject) => {
+export const getContext = async (app: cdk.App) => {
     try {
       const currentBranch = await gitBranch();
       console.log(currentBranch);
@@ -16,19 +15,17 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
 
       const globals = app.node.tryGetContext('globals');
 
-      return resolve({ ...globals, ...environment });
+      return { ...globals, ...environment };
     } catch (error) {
       console.error(error);
-      return reject();
     }
-  });
 };
 
 const app = new cdk.App();
 let context: any;
 
 async () => {
-  const context = await getContext(app);
+  context = await getContext(app);
 }
 
 new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', context, {
