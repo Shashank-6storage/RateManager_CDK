@@ -21,7 +21,7 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "/opt/*": ["lambda-layer/*"]
+      "/opt/*": ["src/lambda-layer/*"]
     }
   },
   "exclude": ["node_modules", "cdk.out"]
