@@ -47,7 +47,9 @@ const createStacks = async () => {
       tags,
     };
 
-    new RateManagerPipeLineStack(app, `pipeline`, context, stackProps);
+    new RateManagerPipeLineStack(app, `demopipeline`, context, stackProps);
+
+    app.synth();
   } catch (error) {
     console.error(error);
   }
