@@ -24,19 +24,18 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
   });
 };
 
-
-
+const app = new cdk.App();
+let context: any;
 
 async () => {
-  const app = new cdk.App();
   const context = await getContext(app);
-
-  new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', context, {
-    env: {
-      account: '760389274302',
-      region: 'ap-south-1',
-    }
-  });
-  app.synth();
 }
 
+new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', context, {
+  env: {
+    account: '760389274302',
+    region: 'ap-south-1',
+  }
+});
+
+app.synth();
