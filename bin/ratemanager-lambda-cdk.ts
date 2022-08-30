@@ -25,7 +25,13 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
 };
 
 const app = new cdk.App();
-new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', {
+let context: any;
+
+async () => {
+  context = await getContext(app);
+}
+
+new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', context, {
   env: {
     account: '760389274302',
     region: 'ap-south-1',
