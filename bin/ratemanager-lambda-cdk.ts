@@ -22,10 +22,9 @@ export const getContext = async (app: cdk.App) => {
 };
 
 const app = new cdk.App();
-let context: any;
-
-async () => {
-  context = await getContext(app);
+let context: CDKContext = {
+  branchName: gitBranch(),
+  ...app.node.tryGetContext('globals')
 }
 
 new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', context, {
