@@ -7,7 +7,7 @@ export class RatemanagerPipeLineStages extends cdk.Stage{
     constructor(scope: Construct, stageName: string, context: CDKContext) {
         super(scope, stageName);
 
-    const lamdaStack = new RatemanagerLambdaStack(this, `develop`, context);
+    const lambdaStack = new RatemanagerLambdaStack(this, stageName, context);
         
     }
 }
