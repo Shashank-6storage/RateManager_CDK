@@ -24,10 +24,12 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
   });
 };
 
-const app = new cdk.App();
+
 
 async () => {
+  const app = new cdk.App();
   const context = await getContext(app);
+
   new RateManagerPipeLineStack(app, `ratemanager-cicd-pipeline`, context, {
     env: {
       region: context.region,
@@ -35,7 +37,9 @@ async () => {
     }
   }
   );
+
+  app.synth();
 }
 
 
-app.synth();
+
