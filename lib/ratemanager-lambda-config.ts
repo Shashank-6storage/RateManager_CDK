@@ -10,13 +10,13 @@ const DEFAULT_LAMBDA_MEMORY_MB = 1024;
 const DEFAULT_LAMBDA_TIMEOUT_MINS = 15;
 
 // Returns lambda definitions with custom env
-export const getLambdaDefinitions = (context: CDKContext): LambdaDefinition[] => {
+export const getLambdaDefinitions = (context: CDKContext, stage: string): LambdaDefinition[] => {
   const lambdaDefinitions: LambdaDefinition[] = [
     {
       name: 'webhook-function',
       environment: {
         REGION: context.region,
-        ENV: context.environment,
+        ENV: stage,
         GIT_BRANCH: context.branchName,
       },
       isPrivate: false,
@@ -29,10 +29,11 @@ export const getLambdaDefinitions = (context: CDKContext): LambdaDefinition[] =>
 export const getFunctionProps = (
   lambdaDefinition: LambdaDefinition,
   lambdaRole: iam.Role,
-  context: CDKContext
+  context: CDKContext,
+  stage: string
 ): NodejsFunctionProps => {
   const functionProps: NodejsFunctionProps = {
-    functionName: `${context.appName}-${lambdaDefinition.name}-${context.environment}`,
+    functionName: `${context.appName}-${lambdaDefinition.name}-stage`,
     entry: `lambda-handlers/${lambdaDefinition.name}.ts`,
     runtime: lambda.Runtime.NODEJS_14_X,
     memorySize: lambdaDefinition.memoryMB ? lambdaDefinition.memoryMB : DEFAULT_LAMBDA_MEMORY_MB,

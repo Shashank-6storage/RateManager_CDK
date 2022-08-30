@@ -46,12 +46,12 @@ export class RatemanagerLambdaStack extends Stack {
 
 
     // Get Lambda definitions
-    const lambdaDefinitions = getLambdaDefinitions(context);
+    const lambdaDefinitions = getLambdaDefinitions(context, stage);
 
     // Loop through the definitions and create lambda functions
     for (const lambdaDefinition of lambdaDefinitions) {
       // Get function props based on lambda definition
-      let functionProps = getFunctionProps(lambdaDefinition, lambdaRole, context);
+      let functionProps = getFunctionProps(lambdaDefinition, lambdaRole, context, stage);
 
       // Check if function is private and add VPC, SG and Subnets
       if (lambdaDefinition.isPrivate) {
