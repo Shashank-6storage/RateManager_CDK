@@ -24,10 +24,11 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
   });
 };
 
+const app = new cdk.App();
+
 // Create Stacks
 async () => {
   try {
-    const app = new cdk.App();
     const context = await getContext(app);
 
     const tags: any = {
@@ -45,9 +46,9 @@ async () => {
     };
 
     new RateManagerPipeLineStack(app, `demopipelinestack`, context, stackProps);
-
-    app.synth();
   } catch (error) {
     console.error(error);
   }
 };
+
+app.synth();
