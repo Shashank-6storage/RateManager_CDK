@@ -23,7 +23,7 @@ export const getContext = async (app: cdk.App) => {
 
 const app = new cdk.App();
 let context: CDKContext = {
-  branchName: gitBranch(),
+  ...app.node.tryGetContext('environments').find((e: any) => e.branchName === gitBranch()),
   ...app.node.tryGetContext('globals')
 }
 
