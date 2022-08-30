@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { RatemanagerLambdaStack } from '../lib/ratemanager-lambda-stack';
 import gitBranch from 'git-branch';
 import { CDKContext } from '../types';
-import {CodePipeline, CodePipelineSource, ShellStep} from 'aws-cdk-lib/pipelines';
 import { RateManagerPipeLineStack } from '../lib/ratemanager-pipeline-stack';
-import { pipeline } from 'stream';
 
 // Get CDK Context based on git branch
 export const getContext = async (app: cdk.App): Promise<CDKContext> => {
@@ -28,7 +25,7 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
 };
 
 // Create Stacks
-const createStacks = async () => {
+async () => {
   try {
     const app = new cdk.App();
     const context = await getContext(app);
@@ -47,12 +44,10 @@ const createStacks = async () => {
       tags,
     };
 
-    new RateManagerPipeLineStack(app, `demopipeline`, context, stackProps);
+    new RateManagerPipeLineStack(app, `demopipelinestack`, context, stackProps);
 
     app.synth();
   } catch (error) {
     console.error(error);
   }
 };
-
-createStacks();

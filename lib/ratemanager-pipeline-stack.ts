@@ -9,13 +9,13 @@ export class RateManagerPipeLineStack extends cdk.Stack {
         super(scope, id, props);
         
         console.log(`pipeline creation started`);
-        const pipeline = new CodePipeline(this, 'pipeline', {
+        const pipeline = new CodePipeline(this, 'Pipeline', {
             pipelineName: `ratemanager-${context.environment}-pipeline-fortest`,
             synth: new ShellStep('Synth', {
                 input: CodePipelineSource.connection('Shashank-6storage/RateManager_CDK', 
                 'develop',
                 {
-                    connectionArn:
+                    connectionArn: 
                         "arn:aws:codestar-connections:ap-south-1:760389274302:connection/2c3f1bd5-3ff4-4546-a42d-4f85f0a408cd"
                 }),
                 commands: [
