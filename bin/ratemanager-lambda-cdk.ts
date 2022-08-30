@@ -44,7 +44,7 @@ async () => {
       tags,
     };
 
-    new RateManagerPipeLineStack(app, `demopipelinestack`, context, stackProps);
+    new RateManagerPipeLineStack(app, `demopipelinestack`, context);
   } catch (error) {
     console.error(error);
   }
