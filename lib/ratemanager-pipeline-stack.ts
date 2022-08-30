@@ -21,7 +21,7 @@ export class RateManagerPipeLineStack extends cdk.Stack {
                 commands: [
                     'npm ci',
                     'npm run build',
-                    'cdk synth'
+                    'npx cdk synth'
                 ]
             })
         })
