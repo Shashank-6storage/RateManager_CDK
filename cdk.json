@@ -24,6 +24,21 @@
         "environment": "develop",
         "branchName": "develop",
         "accountNumber": "760389274302"
+      },
+      {
+        "environment": "test",
+        "branchName": "test",
+        "accountNumber": "760389274302"
+      },
+      {
+        "environment": "uat",
+        "branchName": "stage",
+        "accountNumber": "760389274302"
+      },
+      {
+        "environment": "production",
+        "branchName": "production",
+        "accountNumber": "760389274302"
       }
     ]
   }

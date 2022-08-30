@@ -25,30 +25,18 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
 };
 
 const app = new cdk.App();
+let context : any;
 
-// Create Stacks
-async () => {
-  try {
-    const context = await getContext(app);
+async() => {
+  context = await getContext(app);
+}
 
-    const tags: any = {
-      Environment: context.environment,
-    };
-
-    const stackProps: cdk.StackProps = {
-      env: {
-        region: context.region,
-        account: context.accountNumber,
-      },
-      stackName: `${context.appName}-stack-${context.environment}`,
-      description: `Development environment stack for ratemanager`,
-      tags,
-    };
-
-    new RateManagerPipeLineStack(app, `demopipelinestack`, context, stackProps);
-  } catch (error) {
-    console.error(error);
+new RateManagerPipeLineStack(app, `ratemanager-cicd-pipeline`, context, {
+  env: {
+    region: context.region,
+    account: context.accountNumber,
   }
-};
+}
+);
 
 app.synth();
