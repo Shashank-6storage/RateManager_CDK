@@ -24,22 +24,28 @@ export const getContext = async (app: cdk.App): Promise<CDKContext> => {
   });
 };
 
-
-
+// Create Stacks
 async () => {
-  const app = new cdk.App();
-  const context = await getContext(app);
+  try {
+    const app = new cdk.App();
+    const context = await getContext(app);
 
-  new RateManagerPipeLineStack(app, `ratemanager-cicd-pipeline`, context, {
-    env: {
-      region: context.region,
-      account: context.accountNumber,
-    }
+    const tags: any = {
+      Environment: context.environment,
+    };
+
+    const stackProps: cdk.StackProps = {
+      env: {
+        region: context.region,
+        account: context.accountNumber,
+      },
+      stackName: `${context.appName}-${context.environment}-stack`,
+      description: `Development environment stack for ratemanager`,
+      tags,
+    };
+
+    new RateManagerPipeLineStack(app, `demopipelinestack`, context, stackProps);
+  } catch (error) {
+    console.error(error);
   }
-  );
-
-  app.synth();
-}
-
-
-
+};
