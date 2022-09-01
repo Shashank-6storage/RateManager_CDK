@@ -5,7 +5,7 @@ import { CDKContext } from '../types';
 
 export class RatemanagerPipeLineStages extends cdk.Stage{
     constructor(scope: Construct, stageName: string, context: CDKContext, props?: cdk.StageProps) {
-        super(scope, stageName, context ,props);
+        super(scope, stageName ,props);
 
     const lambdaStack = new RatemanagerLambdaStack(this, stageName, context);
         
