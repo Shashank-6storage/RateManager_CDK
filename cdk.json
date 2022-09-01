@@ -16,32 +16,29 @@
     "@aws-cdk/core:newStyleStackSynthesis": true,
     "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
     "globals": {
-      "appName": "ratemanager"
+      "appName": "ratemanager",
+      "region": "ap-south-1"
     },
     "environments": [
       {
         "environment": "develop",
         "branchName": "develop",
-        "accountNumber": "760389274302",
-        "region": "ap-south-1"
+        "accountNumber": "760389274302"
       },
       {
         "environment": "test",
         "branchName": "test",
-        "accountNumber": "760389274302",
-        "region": "ap-south-1"
+        "accountNumber": "760389274302"
       },
       {
         "environment": "uat",
         "branchName": "stage",
-        "accountNumber": "760389274302",
-        "region": "ap-south-1"
+        "accountNumber": "760389274302"
       },
       {
         "environment": "production",
         "branchName": "production",
-        "accountNumber": "760389274302",
-        "region": "ap-south-1"
+        "accountNumber": "760389274302"
       }
     ]
   }
