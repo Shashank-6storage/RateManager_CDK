@@ -14,6 +14,7 @@ export class RatemanagerLambdaStack extends Stack {
   constructor(scope: Construct, stage: string, context: CDKContext) {
     super(scope, stage);
 
+    console.log(`---------------------------------------------------- in ${context.region} region ---------------------------------------`);
     // Lambda Role
     const lambdaRole = new iam.Role(this, 'lambdaRole', {
       roleName: `${context.appName}-lambda-role-${stage}`,
