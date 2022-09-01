@@ -34,7 +34,12 @@ export class RateManagerPipeLineStack extends cdk.Stack {
 
         console.log(`printing the dev context: ${JSON.stringify(devcontext)}`);
 
-        const devstage = pipeline.addStage(new RatemanagerPipeLineStages(this, 'ratemanager-develop', devcontext));
+        const devstage = pipeline.addStage(new RatemanagerPipeLineStages(this, 'ratemanager-develop', devcontext, {
+            env: {
+                account: devcontext.accountNumber,
+                region: devcontext.region
+            }
+        }));
         devstage.addPost(new ManualApprovalStep(`Manual approval before test`));
         
         const testcontext: CDKContext = {
@@ -42,7 +47,12 @@ export class RateManagerPipeLineStack extends cdk.Stack {
             ...scope.node.tryGetContext('globals')
           }
 
-        const teststage = pipeline.addStage(new RatemanagerPipeLineStages(this, 'ratemanager-test', testcontext));
+        const teststage = pipeline.addStage(new RatemanagerPipeLineStages(this, 'ratemanager-test', testcontext, {
+            env: {
+                account: testcontext.accountNumber,
+                region: testcontext.region
+            }
+        }));
         teststage.addPost(new ManualApprovalStep(`Manual approval before uat`));
 
         const uatcontext: CDKContext = {
@@ -50,7 +60,12 @@ export class RateManagerPipeLineStack extends cdk.Stack {
             ...scope.node.tryGetContext('globals')
           }
 
-        const uatstage = pipeline.addStage(new RatemanagerPipeLineStages(this, 'ratemanager-uat', uatcontext));
+        const uatstage = pipeline.addStage(new RatemanagerPipeLineStages(this, 'ratemanager-uat', uatcontext, {
+            env: {
+                account: uatcontext.accountNumber,
+                region: uatcontext.region
+            }
+        }));
 
 
     }
