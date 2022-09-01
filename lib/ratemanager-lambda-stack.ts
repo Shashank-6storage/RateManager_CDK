@@ -63,6 +63,7 @@ export class RatemanagerLambdaStack extends Stack {
 
       // Lambda Function
       new NodejsFunction(this, `${lambdaDefinition.name}-function`, functionProps);
+      console.log(`created lambda function in ${context.region} region`);
 
       // Create corresponding Log Group with one month retention
       new cwLogs.LogGroup(this, `fn-${lambdaDefinition.name}-log-group`, {
