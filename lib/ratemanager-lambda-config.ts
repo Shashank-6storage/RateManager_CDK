@@ -20,6 +20,15 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
         GIT_BRANCH: context.branchName,
       },
       isPrivate: false,
+    },
+    {
+      name: 'graphql-function',
+      environment: {
+        REGION: context.region,
+        ENV: stage,
+        GIT_BRANCH: context.branchName,
+      },
+      isPrivate: false,
     }
   ];
   return lambdaDefinitions;
