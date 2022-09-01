@@ -33,7 +33,7 @@
       },
       {
         "environment": "uat",
-        "branchName": "stage",
+        "branchName": "uat",
         "accountNumber": "760389274302",
         "region": "us-west-2"
       },
