@@ -43,7 +43,7 @@ export class RateManagerPipeLineStack extends cdk.Stack {
             }
         }));
 
-        devstage.addPost(new ShellStep('validate with unit tests', {
+        devstage.addPost(new ShellStep('validate tests', {
             input: synthstep,
             commands: ['npm run test']
           }));
