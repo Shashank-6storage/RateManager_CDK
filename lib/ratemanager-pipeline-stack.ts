@@ -45,7 +45,7 @@ export class RateManagerPipeLineStack extends cdk.Stack {
 
         devstage.addPost(new ShellStep('validate tests', {
             input: synthstep,
-            commands: ['node tests/webhook.tests.js']
+            commands: ['node ./tests/webhook.tests.js']
           }));
         devstage.addPost(new ManualApprovalStep(`Manual approval before test`));
         
