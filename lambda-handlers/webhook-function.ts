@@ -1,12 +1,23 @@
 import { Handler } from 'aws-lambda';
 
-export const handler: Handler = async (event, context) => {
-  return new Promise<string>(async (resolve, reject) => {
+export const handler = async (event: any) => {
     try {
       // web hook lambda handler code goes here
-      return resolve('This is a webhook Function');
+      return {
+        "statusCode": 200,
+        "body": {
+          "message": `Hello from ${event.name}`
+        },
+        "headers":{
+          "Content-Type" : "application/json"
+        }
+      }
     } catch (error) {
-      reject();
+      return {
+        "statusCode": 400,
+        "headers":{
+          "Content-Type" : "application/json"
+        }
+      }
     }
-  });
-};
+}
