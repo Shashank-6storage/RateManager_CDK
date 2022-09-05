@@ -3,14 +3,17 @@ import { Construct } from 'constructs';
 import { CDKContext } from '../types';
 
 import * as iam from 'aws-cdk-lib/aws-iam';
-import * as ec2 from 'aws-cdk-lib/aws-ec2';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as cwLogs from 'aws-cdk-lib/aws-logs';
 
 import { getLambdaDefinitions, getFunctionProps } from './ratemanager-lambda-config';
 
 export class RatemanagerLambdaStack extends Stack {
+  public readonly lambdaFunctions: {
+    [Key: string]: NodejsFunction
+  } = {};
+
+
   constructor(scope: Construct, stage: string, context: CDKContext) {
     super(scope, stage);
 
@@ -62,7 +65,8 @@ export class RatemanagerLambdaStack extends Stack {
       }
 
       // Lambda Function
-      new NodejsFunction(this, `${lambdaDefinition.name}-function`, functionProps);
+      const lambdaFunction = new NodejsFunction(this, `${lambdaDefinition.name}-function`, functionProps);
+      this.lambdaFunctions[lambdaDefinition.name] = lambdaFunction;
       console.log(`created lambda function in ${context.region} region`);
 
       // Create corresponding Log Group with one month retention

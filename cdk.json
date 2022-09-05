@@ -23,25 +23,41 @@
         "environment": "develop",
         "branchName": "develop",
         "accountNumber": "760389274302",
-        "region": "ap-south-1"
+        "region": "ap-south-1",
+        "baseDomain": "8storage.com",
+        "apiDomain": "api.8storage.com",
+        "hostedZoneId": "Z0530874VRM2UMXIJ5GH",
+        "regionalCertArn": "arn:aws:acm:ap-south-1:760389274302:certificate/de1a7936-d589-4d9f-977e-cacc7027d0aa"
       },
       {
         "environment": "test",
         "branchName": "test",
         "accountNumber": "760389274302",
-        "region": "us-west-2"
+        "region": "us-west-2",
+        "baseDomain": "6storage.com",
+        "apiDomain": "api.6storage.com",
+        "hostedZoneId": "Z07325723AQSAZCR16E9L",
+        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef"
       },
       {
         "environment": "uat",
         "branchName": "uat",
         "accountNumber": "760389274302",
-        "region": "us-west-2"
+        "region": "us-west-2",
+        "baseDomain": "6storage.com",
+        "apiDomain": "api.6storage.com",
+        "hostedZoneId": "Z07325723AQSAZCR16E9L",
+        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef"
       },
       {
         "environment": "production",
         "branchName": "production",
         "accountNumber": "760389274302",
-        "region": "us-west-2"
+        "region": "us-west-2",
+        "baseDomain": "6storage.com",
+        "apiDomain": "api.6storage.com",
+        "hostedZoneId": "Z07325723AQSAZCR16E9L",
+        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef"
       }
     ]
   }

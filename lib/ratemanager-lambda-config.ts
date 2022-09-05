@@ -3,7 +3,7 @@ import { LambdaDefinition, CDKContext } from '../types';
 import { NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
-import { RatemanagerLambdaStack } from './ratemanager-lambda-stack'
+import { HttpMethod } from "aws-cdk-lib/aws-stepfunctions-tasks";
 
 // Constants
 const DEFAULT_LAMBDA_MEMORY_MB = 1024;
@@ -20,6 +20,10 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
         GIT_BRANCH: context.branchName,
       },
       isPrivate: false,
+      api: {
+        path: `${context.environment}/webhook`,
+        methods: [HttpMethod.POST]
+      }
     },
     {
       name: 'graphql-function',
@@ -29,6 +33,10 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
         GIT_BRANCH: context.branchName,
       },
       isPrivate: false,
+      api: {
+        path: `${context.environment}/rm`,
+        methods: [HttpMethod.POST]
+      }
     }
   ];
   return lambdaDefinitions;
