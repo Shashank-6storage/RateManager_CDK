@@ -43,7 +43,7 @@ export class RateManagerPipeLineStack extends cdk.Stack {
             }
         }));
 
-        const testFolder = './tests/';
+        const testFolder = './src/';
         const fs = require('fs');
 
         fs.readdirSync(testFolder).forEach((file: any) => {
