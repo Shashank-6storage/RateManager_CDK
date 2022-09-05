@@ -21,7 +21,7 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
       },
       isPrivate: false,
       api: {
-        path: `${context.environment}/webhook`,
+        path: `/${context.environment}/webhook`,
         methods: [HttpMethod.POST]
       }
     },
@@ -34,7 +34,7 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
       },
       isPrivate: false,
       api: {
-        path: `${context.environment}/rm`,
+        path: `/${context.environment}/rm`,
         methods: [HttpMethod.POST]
       }
     }
