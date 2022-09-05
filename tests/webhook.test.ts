@@ -1,4 +1,4 @@
-import * as webhooks from 'lambda-handlers/webhook-function';
+import * as webhooks from '../lambda-handlers/webhook-function';
 import { Context } from 'aws-lambda';
 
 describe('Unit test for webhook handler', function () {
