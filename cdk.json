@@ -27,7 +27,7 @@
         "baseDomain": "8storage.com",
         "apiDomain": "api.8storage.com",
         "hostedZoneId": "Z0530874VRM2UMXIJ5GH",
-        "regionalCertArn": "arn:aws:acm:ap-south-1:760389274302:certificate/de1a7936-d589-4d9f-977e-cacc7027d0aa"
+        "regionalCertArn": "arn:aws:acm:ap-south-1:760389274302:certificate/fff9e557-5236-4e49-b6d2-aecef453365e"
       },
       {
         "environment": "test",
