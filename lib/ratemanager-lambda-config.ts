@@ -6,8 +6,8 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import { HttpMethod } from "aws-cdk-lib/aws-stepfunctions-tasks";
 
 // Constants
-const DEFAULT_LAMBDA_MEMORY_MB = 1024;
-const DEFAULT_LAMBDA_TIMEOUT_MINS = 15;
+const DEFAULT_LAMBDA_MEMORY_MB = 256;
+const DEFAULT_LAMBDA_TIMEOUT_MINS = 3;
 
 // Returns lambda definitions with custom env
 export const getLambdaDefinitions = (context: CDKContext, stage: string): LambdaDefinition[] => {
