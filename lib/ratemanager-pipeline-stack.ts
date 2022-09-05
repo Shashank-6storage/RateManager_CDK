@@ -43,16 +43,21 @@ export class RateManagerPipeLineStack extends cdk.Stack {
             }
         }));
 
-        const testFolder = './src/';
-        const fs = require('fs');
+        // const testFolder = '../src/';
+        // const fs = require('fs');
 
-        fs.readdirSync(testFolder).forEach((file: any) => {
-            console.log(file);
-        });
+        // fs.readdirSync(testFolder).forEach((file: any) => {
+        //     console.log(file);
+        // });
         
         devstage.addPost(new ShellStep('validate tests', {
-            input: synthstep,
-            commands: ['node ./tests/webhook.test.js']
+            input: CodePipelineSource.connection('Shashank-6storage/RateManager_CDK', 
+            'develop',
+            {
+                connectionArn: 
+                    "arn:aws:codestar-connections:ap-south-1:760389274302:connection/2c3f1bd5-3ff4-4546-a42d-4f85f0a408cd"
+            }),
+            commands: ['npm t']
           }));
         devstage.addPost(new ManualApprovalStep(`Manual approval before test`));
         
