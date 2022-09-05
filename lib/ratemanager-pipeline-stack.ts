@@ -43,12 +43,20 @@ export class RateManagerPipeLineStack extends cdk.Stack {
             }
         }));
 
+        
         devstage.addPost(new ShellStep('validate tests', {
             input: synthstep,
             commands: ['node tests/webhook.tests.js']
           }));
         devstage.addPost(new ManualApprovalStep(`Manual approval before test`));
         
+        const testFolder = './tests/';
+        const fs = require('fs');
+
+        fs.readdirSync(testFolder).forEach((file: any) => {
+            console.log(file);
+        });
+
         const testcontext: CDKContext = {
             ...scope.node.tryGetContext('environments').find((e: any) => e.branchName === 'test'),
             ...scope.node.tryGetContext('globals')
