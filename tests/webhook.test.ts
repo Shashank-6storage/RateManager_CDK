@@ -1,4 +1,4 @@
-import { handler } from 'lambda-handlers/webhook-function';
+import * as webhooks from 'lambda-handlers/webhook-function';
 import { Context } from 'aws-lambda';
 
 describe('Unit test for webhook handler', function () {
@@ -7,7 +7,7 @@ describe('Unit test for webhook handler', function () {
         const event = {
             "name": "shashank"
         } as any
-        const result = await handler(event);
+        const result = await webhooks.handler(event);
 
         expect(result.statusCode).toEqual(200);
         expect(result.body?.message).toEqual(`Hello from ${event.name}`);
