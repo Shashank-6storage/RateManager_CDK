@@ -55,10 +55,11 @@ export class RateManagerPipeLineStack extends cdk.Stack {
         devstage.addPost(new ShellStep('validate tests', {
             input: source,
             commands: ['npm ci',
-            'npm run build',
-            'npx cdk synth',
+            // 'npm run build',
+            // 'npx cdk synth',
             'npm t']
           }));
+
         devstage.addPost(new ManualApprovalStep(`Manual approval before test`));
         
 
