@@ -3,7 +3,6 @@ import { LambdaDefinition, CDKContext } from '../types';
 import { NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
-import { HttpMethod } from "aws-cdk-lib/aws-stepfunctions-tasks";
 
 // Constants
 const DEFAULT_LAMBDA_MEMORY_MB = 256;
@@ -22,7 +21,7 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
       isPrivate: false,
       api: {
         path: `/${context.environment}/webhook`,
-        methods: [HttpMethod.POST]
+        methods: "POST"
       }
     },
     {
@@ -35,7 +34,7 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
       isPrivate: false,
       api: {
         path: `/${context.environment}/rm`,
-        methods: [HttpMethod.POST]
+        methods: "POST"
       }
     }
   ];

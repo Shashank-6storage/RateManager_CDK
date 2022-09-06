@@ -31,7 +31,7 @@ export type LambdaDefinition = {
   isPrivate?: boolean;
   api?: {
     path: string;
-    methods: HttpMethod[];
+    methods: string;
   }
 };
 
