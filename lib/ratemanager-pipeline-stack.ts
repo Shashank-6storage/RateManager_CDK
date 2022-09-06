@@ -27,7 +27,7 @@ export class RateManagerPipeLineStack extends cdk.Stack {
 
         //console.log(`env is : ${JSON.stringify(context)}`);
         const pipeline = new CodePipeline(this, 'Pipeline', {
-            pipelineName: `ratemanager-cicd-pipeline`,
+            pipelineName: `ratemanager-backend-cicd-pipeline`,
             synth: synthstep
         });
 
