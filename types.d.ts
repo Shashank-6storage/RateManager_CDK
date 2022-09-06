@@ -15,10 +15,10 @@ export type CDKContext = {
     cidr: string;
     privateSubnetIds: string[];
   };
-  baseDomain: string;
-  apiDomain: string;
-  hostedZondId: string;
-  regionalCertArn: string;
+  // baseDomain: string;
+  // apiDomain: string;
+  // hostedZondId: string;
+  // regionalCertArn: string;
 };
 
 export type LambdaDefinition = {
