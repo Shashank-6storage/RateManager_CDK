@@ -9,12 +9,12 @@ export class RatemanagerPipeLineStages extends cdk.Stage{
         super(scope, stageName ,props);
 
     const lambdaStack = new RatemanagerLambdaStack(this, stageName, context);
-    const apiStack = new APIStack(
-        this,
-        `${context.appName}-api-stack-${context.environment}`,
-        context,
-        { ...props, lambdaFunctions: lambdaStack.lambdaFunctions }
-      );
+    // const apiStack = new APIStack(
+    //     this,
+    //     `${context.appName}-api-stack-${context.environment}`,
+    //     context,
+    //     { ...props, lambdaFunctions: lambdaStack.lambdaFunctions }
+    //   );
         
     }
 }

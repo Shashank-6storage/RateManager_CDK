@@ -33,6 +33,7 @@
     "cdk-cli": "^1.1.0",
     "constructs": "^10.0.0",
     "esbuild": "^0.14.36",
+    "esbuild-windows-64": "^0.15.7",
     "git-branch": "^2.0.1",
     "prettier": "^2.7.1",
     "source-map-support": "^0.5.16"
