@@ -60,11 +60,12 @@ import { IFunction } from "aws-cdk-lib/aws-lambda";
 //     }
 // }
 
-export class ApiGateway extends RestApi{
+export class ApiGateway extends Stack{
   constructor(scope: Construct, id: string, context: CDKContext, props: APIStackProps) {
-    super(scope, "ApiGateway", {
-      restApiName : `${context.appName}-api-${context.environment}`
-    });
+    super(scope, id, props);
+
+    // Create a rest api
+    const restapi = new RestApi(this, id, props);
 
     // Get Lambda definitions
     const lambdaDefinitions = getLambdaDefinitions(context, context.environment);
@@ -72,7 +73,7 @@ export class ApiGateway extends RestApi{
     // Loop through lambda definitions and create api routes if any
     for (const lambdaDefinition of lambdaDefinitions) {
         if (lambdaDefinition.api) {
-          const resource = this.root.resourceForPath(lambdaDefinition.api.path);
+          const resource = restapi.root.resourceForPath(lambdaDefinition.api.path);
           resource.addMethod(lambdaDefinition.api.methods, new LambdaIntegration(props.lambdaFunctions[lambdaDefinition.name]));
         }
       }
