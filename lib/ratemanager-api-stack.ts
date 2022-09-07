@@ -1,5 +1,4 @@
-import { ContextProvider, Stack, StackProps } from "aws-cdk-lib"
-import { DomainName, HttpApi, CorsHttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { ContextProvider, Stack, StackProps } from "aws-cdk-lib";
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import { Construct } from "constructs";
 import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
@@ -7,7 +6,6 @@ import { APIStackProps, CDKContext } from "types";
 import { ARecord, RecordTarget, HostedZone } from 'aws-cdk-lib/aws-route53';
 import { ApiGatewayv2DomainProperties } from 'aws-cdk-lib/aws-route53-targets';
 import { getLambdaDefinitions } from './ratemanager-lambda-config';
-import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 //import { ApiGateway } from "aws-cdk-lib/aws-events-targets";
 import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { strict } from "assert";

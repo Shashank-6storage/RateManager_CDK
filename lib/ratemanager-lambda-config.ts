@@ -50,7 +50,7 @@ export const getFunctionProps = (
 ): NodejsFunctionProps => {
   const functionProps: NodejsFunctionProps = {
     functionName: `${context.appName}-${lambdaDefinition.name}-${stage}`,
-    entry: `lambda-handlers/${lambdaDefinition.name}.ts`,
+    entry: `./src/lambda-handlers/${lambdaDefinition.name}.ts`,
     runtime: lambda.Runtime.NODEJS_14_X,
     memorySize: lambdaDefinition.memoryMB ? lambdaDefinition.memoryMB : DEFAULT_LAMBDA_MEMORY_MB,
     timeout: lambdaDefinition.timeoutMins ? Duration.minutes(lambdaDefinition.timeoutMins) : Duration.minutes(DEFAULT_LAMBDA_TIMEOUT_MINS),
