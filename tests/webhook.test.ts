@@ -16,5 +16,6 @@ describe('Unit test for webhook handler', function () {
 
         expect(result.statusCode).toEqual(200);
         expect(response.message).toEqual(`Hello from ${event.name}`);
+        
     });
 });
