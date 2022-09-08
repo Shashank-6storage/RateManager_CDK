@@ -5,6 +5,7 @@ export const handler = async (event: any) => {
       // web hook lambda handler code goes here
       return {
         "statusCode": 200,
+        "isBase64Encoded": false,
         "body": {
           "status": "SUCCESS",
           "message": `Hello from ${event.name}`
