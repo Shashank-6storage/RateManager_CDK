@@ -16,7 +16,21 @@ export class RatemanagerPipeLineStages extends cdk.Stage{
     //     { ...props, lambdaFunctions: lambdaStack.lambdaFunctions }
     //   );
 
-    const apigateway = new ApiGateway(this, 'ratemanager-apigateway', context, { ...props, lambdaFunctions: lambdaStack.lambdaFunctions });
+    const apigatewayProps = {
+        description: 'rate manager api gateway',
+        deployOptions: {
+          stageName: 'dev',
+        },
+        defaultCorsPreflightOptions: {
+            allowHeaders: [
+              'Content-Type',
+            ],
+            allowMethods: ['POST'],
+        }
+    }
+    const apigateway = new ApiGateway(this, 'ratemanager-apigateway', context, { 
+        ...props, 
+        lambdaFunctions: lambdaStack.lambdaFunctions });
         
     }
 }

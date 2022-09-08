@@ -4,15 +4,13 @@ export const handler = async (event: any) => {
     try {
       // web hook lambda handler code goes here
 
-      let response: any = {
-        "status": "SUCCESS",
-        "message": `Hello from ${event.name}`
-      };
-
       return {
         "statusCode": 200,
         "isBase64Encoded": false,
-        "body": JSON.stringify(response),
+        "body": {
+          "status": "SUCCESS",
+          "message": `Hello from ${event.name}`
+        },
         "headers":{
           "Content-Type" : "application/json"
         }
