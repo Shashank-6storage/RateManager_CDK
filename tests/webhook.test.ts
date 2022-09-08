@@ -5,7 +5,9 @@ describe('Unit test for webhook handler', function () {
     it('verifies successful response', async () => {
         let context: Context;
         const event = {
-            "name": "shashank"
+            "body": {
+                "name": "shashank"
+            }
         } as any
 
 
