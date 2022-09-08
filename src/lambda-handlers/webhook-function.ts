@@ -3,6 +3,7 @@ import { Handler } from 'aws-lambda';
 export const handler = async (event: any) => {
     try {
       // web hook lambda handler code goes here
+      console.log(`Event passed to lambda------------------------ : ${JSON.stringify(event)}`);
 
       return {
         "statusCode": 200,
