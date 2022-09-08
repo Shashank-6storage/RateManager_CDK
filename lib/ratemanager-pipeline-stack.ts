@@ -13,7 +13,7 @@ export class RateManagerPipeLineStack extends cdk.Stack {
         'develop',
         {
             connectionArn: 
-                "arn:aws:codestar-connections:ap-south-1:760389274302:connection/2c3f1bd5-3ff4-4546-a42d-4f85f0a408cd"
+                "arn:aws:codestar-connections:ap-south-1:760389274302:connection/2418ce9a-ae6e-4f80-9239-1f83215b83a0"
         });
 
         const synthstep = new ShellStep('Synth', {
