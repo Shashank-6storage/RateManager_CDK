@@ -7,10 +7,10 @@ export const handler = async (event: any) => {
       return {
         "statusCode": 200,
         "isBase64Encoded": false,
-        "body": {
+        "body": JSON.stringify({
           "status": "SUCCESS",
           "message": `Hello from ${event.name}`
-        },
+        }),
         "headers":{
           "Content-Type" : "application/json"
         }

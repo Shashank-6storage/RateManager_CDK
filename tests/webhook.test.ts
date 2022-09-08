@@ -7,9 +7,12 @@ describe('Unit test for webhook handler', function () {
         const event = {
             "name": "shashank"
         } as any
+
+
         const result = await webhooks.handler(event);
+        const response = (result.body) ? JSON.parse(result.body): {};
 
         expect(result.statusCode).toEqual(200);
-        expect(result.body?.message).toEqual(`Hello from ${event.name}`);
+        expect(response.message).toEqual(`Hello from ${event.name}`);
     });
 });
