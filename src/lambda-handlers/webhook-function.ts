@@ -6,6 +6,7 @@ export const handler = async (event: any) => {
       return {
         "statusCode": 200,
         "body": {
+          "status": "SUCCESS",
           "message": `Hello from ${event.name}`
         },
         "headers":{
