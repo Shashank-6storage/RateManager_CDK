@@ -27,7 +27,7 @@ const context: CDKContext = {
   ...app.node.tryGetContext('globals')
 }
 
-new RateManagerPipeLineStack(app, 'ratemanager-pipeline-stack', {
+new RateManagerPipeLineStack(app, 'ratemanager-api-pipeline-stack', {
   env: {
       account: '760389274302',
       region: 'ap-south-1'
