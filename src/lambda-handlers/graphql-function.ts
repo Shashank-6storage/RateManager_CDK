@@ -1,37 +1,58 @@
-// import { ApolloServer, gql } from 'apollo-server-lambda';
+//import { ApolloServer, gql } from 'apollo-server-lambda';
+import * as awsserverlessexpress from 'aws-serverless-express';
+import { createConnection, getConnectionManager } from "typeorm";
+import { Rules, RulesAmplify, RulesCompound, RulesEvalution } from "../schema/entities/Rules";
+import { storageIdentity, Unit } from "../schema/entities/StorageUnit";
+import { Lease } from "../schema/entities/StorageLease";
+import { Tenant, Users } from "../schema/entities/User";
+const app = require('../index');
 
-// const typeDefs = gql`
-//   type Query {
-//     user: User
-//   }
+const server = awsserverlessexpress.createServer(app);
 
-//   type User {
-//     id: ID
-//     name: String
-//   }
-// `;
-
-// const resolvers = {
-//   Query: {
-//     user: () => ({ id: 123, name: 'John Doe' })
-//   }
-// };
-
-// const server = new ApolloServer({ typeDefs, resolvers });
-
-// exports.handler = server.createHandler();
-
-
-
-import { Handler } from 'aws-lambda';
-
-export const handler: Handler = async (event, context) => {
-  return new Promise<string>(async (resolve, reject) => {
-    try {
-      // web hook lambda handler code goes here
-      return resolve('This is a graphql Function');
-    } catch (error) {
-      reject();
-    }
-  });
+export const graphqlHandler = async (event: any, context: any) => {
+  try{
+    await createDbConnection();
+    awsserverlessexpress.proxy(server, event, context);
+    await terminateDbConnection();
+  }
+  catch(error){
+    console.error()
+  }
 };
+
+async function createDbConnection() {
+
+  try {
+    await createConnection({
+      type: "mysql",
+      database: process.env.DB_NAME,
+      host: process.env.DB_HOST,
+      port: (process.env.DB_PORT) ? parseInt(process.env.DB_PORT) : 3306,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      logging: true,
+      synchronize: false,
+      entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
+    })
+  }
+  catch (error) {
+    console.error(`Failed to connect to database with the exception: ${error}`);
+  }
+}
+
+async function terminateDbConnection() {
+
+  const conn = await getConnectionManager().get();
+  if (conn.isConnected) {
+    conn
+      .close()
+      .then(() => {
+        console.log('DB conn closed');
+      })
+      .catch((err: any) => {
+        console.error('Error clossing conn to DB, ', err);
+      });
+  } else {
+    console.log('DB conn already closed.');
+  }
+}

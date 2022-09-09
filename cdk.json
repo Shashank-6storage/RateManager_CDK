@@ -27,7 +27,12 @@
         "baseDomain": "8storage.com",
         "apiDomain": "api.8storage.com",
         "hostedZoneId": "Z0530874VRM2UMXIJ5GH",
-        "regionalCertArn": "arn:aws:acm:ap-south-1:760389274302:certificate/fff9e557-5236-4e49-b6d2-aecef453365e"
+        "regionalCertArn": "arn:aws:acm:ap-south-1:760389274302:certificate/fff9e557-5236-4e49-b6d2-aecef453365e",
+        "db_name": "RateManager",
+        "db_host": "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+        "db_port": "3306",
+        "db_username": "admin",
+        "db_password": "8832!2#Zd6pB"
       },
       {
         "environment": "test",

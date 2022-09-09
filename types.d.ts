@@ -10,6 +10,12 @@ export type CDKContext = {
   environment: string;
   branchName: string;
   accountNumber: string;
+  db_type: string;
+  db_name: string;
+  db_host: string;
+  db_port: string;
+  db_username: string;
+  db_password: string;
   vpc?: {
     id: string;
     cidr: string;

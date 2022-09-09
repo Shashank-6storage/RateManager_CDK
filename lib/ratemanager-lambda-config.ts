@@ -17,6 +17,12 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
         REGION: context.region,
         ENV: stage,
         GIT_BRANCH: context.branchName,
+        DB_TYPE: context.db_type,
+        DB_NAME: context.db_name,
+        DB_HOST: context.db_host,
+        DB_PORT: context.db_port,
+        DB_USERNAME: context.db_username,
+        DB_PASSWORD: context.db_password 
       },
       isPrivate: false,
       api: {
@@ -30,6 +36,12 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
         REGION: context.region,
         ENV: stage,
         GIT_BRANCH: context.branchName,
+        DB_TYPE: context.db_type,
+        DB_NAME: context.db_name,
+        DB_HOST: context.db_host,
+        DB_PORT: context.db_port,
+        DB_USERNAME: context.db_username,
+        DB_PASSWORD: context.db_password 
       },
       isPrivate: false,
       api: {
