@@ -16,9 +16,12 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "Node",
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types"],
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "/opt/*": ["src/lambda-layer/*"]
