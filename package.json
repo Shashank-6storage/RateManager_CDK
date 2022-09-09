@@ -5,7 +5,7 @@
     "yt-typescript-lambda-cdk": "bin/yt-typescript-lambda-cdk.js"
   },
   "scripts": {
-    "build": "tsc -p",
+    "build": "tsc",
     "watch": "tsc -w",
     "test": "jest --config=jest.config.js",
     "cdk": "cdk"
