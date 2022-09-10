@@ -13,7 +13,9 @@ export class Lease extends BaseEntity{
     })
     leaseId!: string
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     contractNo!: string
 
     @CreateDateColumn({
