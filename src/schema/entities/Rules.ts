@@ -15,9 +15,10 @@ export class Rules extends BaseEntity{
     })
     cliendId!: String    
 
-    @Column('string',{
+    @Column({
         comment: "Mapping Rules Compound Id",
-        length: 6
+        length: 6,
+        type: "string"
     })
     compound_id!: string
 
@@ -38,7 +39,8 @@ export class Rules extends BaseEntity{
 
     @Column({
         default: true,
-        comment: "To Keep the Rules Active or Inactive"
+        comment: "To Keep the Rules Active or Inactive",
+        type: "boolean"
     })
     flag!: boolean
 }
@@ -51,23 +53,27 @@ export class RulesEvalution extends BaseEntity{
 
     @Column({
         comment: "Mapping Rules Name Id",
-        length: 36
+        length: 36,
+        type: "string"
     })
     rule_id!: string
 
     @Column({
         comment: "Mapping Rules Accumulate Id",
-        length: 6
+        length: 6,
+        type: "string"
     })
     accumulate_id!: string
 
     @Column({
-        length: 50
+        length: 50,
+        type: "string"
     })
     price!: string
 
     @Column({
-        length: 6
+        length: 6,
+        type: "string"
     })
     evaluate_days!: string
 
@@ -76,7 +82,8 @@ export class RulesEvalution extends BaseEntity{
 
     @Column({
         default: true,
-        comment: "To Keep the rules_evalution Active or Inactive"
+        comment: "To Keep the rules_evalution Active or Inactive",
+        type: "boolean"
     })
     flag!: boolean
     
@@ -96,7 +103,8 @@ export class RulesCompound extends BaseEntity{
 
     @Column({
         default: true,
-        comment: "To Keep the Rules Active or Inactive"
+        comment: "To Keep the Rules Active or Inactive",
+        type: "boolean"
     })
     flag!: boolean        
 }
@@ -115,7 +123,8 @@ export class RulesAmplify extends BaseEntity{
 
     @Column({
         default: true,
-        comment: "To Keep the Rules Active or Inactive"
+        comment: "To Keep the Rules Active or Inactive",
+        type: "boolean"
     })
     flag!: boolean        
 }

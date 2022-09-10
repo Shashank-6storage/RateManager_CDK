@@ -6,18 +6,25 @@ export class Users extends BaseEntity{
     @PrimaryGeneratedColumn("uuid")
     id!: number;
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     clientId!: string
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     tenantId! : string;
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     contractNo! : string;
 
     @Column({
         length: 36,
-        default: null
+        default: null,
+        type: "string"
     })
     ruleId! : string;
 
@@ -30,7 +37,9 @@ export class Tenant extends BaseEntity{
     @PrimaryGeneratedColumn("uuid")
     id!: number
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     userId!: string    
 
     @Column({
@@ -74,10 +83,14 @@ export class Tenant extends BaseEntity{
     })
     phoneNumber!: string
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     addressLineTwo!: string
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     addressLineOne!: string
 
     @Column({

@@ -9,6 +9,7 @@ export class Lease extends BaseEntity{
 
     @Column({
         name: "lease_Id",
+        type: "string"
     })
     leaseId!: string
 
@@ -27,32 +28,42 @@ export class Lease extends BaseEntity{
     })
     moveOutDate!: Date | null
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     nextBillingDate!: string
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     paidThrough!: string
 
-    @Column()
+    @Column({
+        type: "string"
+    })
     leaseStatus!: string
 
     @Column({
-        length: 36
+        length: 36,
+        type: "string"
     })
     invoicePeriodId!: string
 
     @Column({
-        length: 20
+        length: 20,
+        type: "string"
     })
     invoicePeriod!: string
     
     @Column({
-        length: 36
+        length: 36,
+        type: "string"
     })
     invoiceRecurringTypeId!: string
     
     @Column({
-        length: 20
+        length: 20,
+        type: "string"
     })
     invoiceRecurringType!: string
 
