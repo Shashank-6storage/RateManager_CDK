@@ -1,3 +1,4 @@
+import { text } from "express";
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, getConnection, Double } from "typeorm";
 
 
@@ -14,7 +15,7 @@ export class Rules extends BaseEntity{
     })
     cliendId!: String    
 
-    @Column({
+    @Column('string',{
         comment: "Mapping Rules Compound Id",
         length: 6
     })
