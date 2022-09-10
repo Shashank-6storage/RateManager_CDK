@@ -9,7 +9,7 @@ const app = require('../index');
 
 const server = awsserverlessexpress.createServer(app);
 
-export const graphqlHandler = async (event: any, context: any) => {
+export const handler = async (event: any, context: any) => {
   try{
     await createDbConnection();
     awsserverlessexpress.proxy(server, event, context);
