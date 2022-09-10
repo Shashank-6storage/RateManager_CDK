@@ -33,7 +33,9 @@ async function createDbConnection() {
       logging: true,
       synchronize: false,
       entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
-    })
+    });
+
+    console.log('DB connection created');
   }
   catch (error) {
     console.error(`Failed to connect to database with the exception: ${error}`);
@@ -50,7 +52,7 @@ async function terminateDbConnection() {
         console.log('DB conn closed');
       })
       .catch((err: any) => {
-        console.error('Error clossing conn to DB, ', err);
+        console.error('Error closing conn to DB, ', err);
       });
   } else {
     console.log('DB conn already closed.');

@@ -64,6 +64,7 @@ export const lease_filter_record = {
         clientId : { type: GraphQLString }
     },
     async resolve(parent : any, args : any){
+        console.log(`Gql lease_filter_record query invoked`);
         const storageTypeData = await storageIdentity.query("SELECT DISTINCT(SI.storageType) AS value FROM `user_contract` AS UC LEFT JOIN `storage_identity` AS SI ON SI.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"'");
         const locationData = await storageIdentity.query("SELECT DISTINCT(SI.location) AS value FROM `user_contract` AS UC LEFT JOIN `storage_identity` AS SI ON SI.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"'");
         const buildingData = await storageIdentity.query("SELECT DISTINCT(SI.building) AS value FROM `user_contract` AS UC LEFT JOIN `storage_identity` AS SI ON SI.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"'");
@@ -71,6 +72,17 @@ export const lease_filter_record = {
         const minPriceData = await storageIdentity.query("SELECT SU.netAmount AS value  FROM `user_contract` AS UC LEFT JOIN `storage_unit` AS SU ON SU.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"' ORDER BY SU.netAmount ASC LIMIT 1");
         const maxPriceData = await storageIdentity.query("SELECT SU.netAmount AS value  FROM `user_contract` AS UC LEFT JOIN `storage_unit` AS SU ON SU.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"' ORDER BY SU.netAmount DESC LIMIT 1");
 
+        console.log(`Gql lease_filter_record query returning the response: ${[{ 
+            storageType : storageTypeData, 
+            location    : locationData,
+            building    : buildingData ,
+            unitType    : unitTypeData,
+            minPrice    : minPriceData[0].value,
+            maxPrice    : maxPriceData[0].value,
+            amenity     : "",
+            
+        }] }`);
+        
         return [{ 
             storageType : storageTypeData, 
             location    : locationData,
