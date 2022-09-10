@@ -8,17 +8,17 @@ export class Unit extends BaseEntity{
 
     @Column({
         name: "storage_unit_id",
-        type: "string"
+        type: "varchar"
     })
     storage_unit_id!: string
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     contractNo!: string
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     unitNumber!: string
 
@@ -71,12 +71,12 @@ export class Unit extends BaseEntity{
     grossAmount!: number
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     isMovable!: string    
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     unitVisibility!: string    
 }
@@ -89,73 +89,73 @@ export class storageIdentity extends BaseEntity{
     id!: number    
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     contractNo!: string
 
     @Column({
         length: 36,
-        type: "string"
+        type: "varchar"
     })
     storageTypeId!: string
     
     @Column({
         length: 50,
-        type: "string"
+        type: "varchar"
     })
     storageType!: string
 
     @Column({
         length: 36,
-        type: "string"
+        type: "varchar"
     })
     locationId!: string
 
     @Column({
         length: 50,
-        type: "string"
+        type: "varchar"
     })
     location!: string
 
     @Column({
         length: 36,
-        type: "string"
+        type: "varchar"
     })
     buildingId!: string
 
     @Column({
         length: 50,
-        type: "string"
+        type: "varchar"
     })
     building!: string
 
     @Column({
         length: 36,
-        type: "string"
+        type: "varchar"
     })
     unitTypeId!: string
 
     @Column({
         length: 50,
-        type: "string"
+        type: "varchar"
     })
     unitType!: string
 
     @Column({
         length: 36,
-        type: "string"
+        type: "varchar"
     })
     UnitStatusId!: string
 
     @Column({
         length: 20,
-        type: "string"
+        type: "varchar"
     })
     UnitStatus!: string
 
     @Column({
         length: 20,
-        type: "string"
+        type: "varchar"
     })
     unitAvailablity!: string
 }

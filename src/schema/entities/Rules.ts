@@ -18,7 +18,7 @@ export class Rules extends BaseEntity{
     @Column({
         comment: "Mapping Rules Compound Id",
         length: 6,
-        type: "string"
+        type: "varchar"
     })
     compound_id!: string
 
@@ -54,26 +54,26 @@ export class RulesEvalution extends BaseEntity{
     @Column({
         comment: "Mapping Rules Name Id",
         length: 36,
-        type: "string"
+        type: "varchar"
     })
     rule_id!: string
 
     @Column({
         comment: "Mapping Rules Accumulate Id",
         length: 6,
-        type: "string"
+        type: "varchar"
     })
     accumulate_id!: string
 
     @Column({
         length: 50,
-        type: "string"
+        type: "varchar"
     })
     price!: string
 
     @Column({
         length: 6,
-        type: "string"
+        type: "varchar"
     })
     evaluate_days!: string
 

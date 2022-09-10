@@ -7,24 +7,24 @@ export class Users extends BaseEntity{
     id!: number;
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     clientId!: string
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     tenantId! : string;
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     contractNo! : string;
 
     @Column({
         length: 36,
         default: null,
-        type: "string"
+        type: "varchar"
     })
     ruleId! : string;
 
@@ -38,7 +38,7 @@ export class Tenant extends BaseEntity{
     id!: number
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     userId!: string    
 
@@ -84,12 +84,12 @@ export class Tenant extends BaseEntity{
     phoneNumber!: string
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     addressLineTwo!: string
 
     @Column({
-        type: "string"
+        type: "varchar"
     })
     addressLineOne!: string
 
