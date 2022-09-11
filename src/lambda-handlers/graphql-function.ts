@@ -7,12 +7,14 @@ import { Lease } from "../schema/entities/StorageLease";
 import { Tenant, Users } from "../schema/entities/User";
 const app = require('../index');
 
-export const handler = async (event: any, context: any) => {
+const server =  awsserverlessexpress.createServer(app);
+
+exports.handler = async (event: any, context: any) => {
   try{
-    const server = await awsserverlessexpress.createServer(app);
-    await createDbConnection();
+    
+    //await createDbConnection();
     awsserverlessexpress.proxy(server, event, context);
-    await terminateDbConnection();
+    //await terminateDbConnection();
   }
   catch(error){
     console.error()
