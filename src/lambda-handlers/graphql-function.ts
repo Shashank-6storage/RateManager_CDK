@@ -5,6 +5,8 @@ import { Rules, RulesAmplify, RulesCompound, RulesEvalution } from "../schema/en
 import { storageIdentity, Unit } from "../schema/entities/StorageUnit";
 import { Lease } from "../schema/entities/StorageLease";
 import { Tenant, Users } from "../schema/entities/User";
+import { graphqlHTTP } from "express-graphql";
+import { schema } from '../schema/index';
 const app = require('../index');
 
 const server =  awsserverlessexpress.createServer(app);
@@ -12,9 +14,13 @@ const server =  awsserverlessexpress.createServer(app);
 exports.handler = async (event: any, context: any) => {
   try{
     
-    //await createDbConnection();
+    await createDbConnection();
+    app.post("/rm", graphqlHTTP({
+      schema,
+      graphiql: true
+  }));
     awsserverlessexpress.proxy(server, event, context);
-    //await terminateDbConnection();
+    await terminateDbConnection();
   }
   catch(error){
     console.error()
