@@ -11,6 +11,6 @@ const {
     app.use(cors());
     app.use(bodyParser.json());
 
-app.use("/", gqlroutes);
+app.post("/rm", gqlroutes);
 
 module.exports = app;
