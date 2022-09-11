@@ -49,7 +49,7 @@ async function terminateDbConnection() {
     conn
       .close()
       .then(() => {
-        console.log('DB conn closed');
+        console.log('DB connection closed');
       })
       .catch((err: any) => {
         console.error('Error closing conn to DB, ', err);
