@@ -6,9 +6,8 @@ import { schema } from './schema/index';
  const app = express();
     app.use(cors())
     app.use(express.json())
-    app.post("/", graphqlHTTP({
-        schema,
-        graphiql: true
-    }));
+    app.post("/", () => {
+        console.log(` into the graphql function `);
+    });
 
 module.exports = app;
