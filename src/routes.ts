@@ -5,6 +5,7 @@ const routes = express.Router({
 });
 
 routes.post('/', (req, res) => {
+    console.log(`....................................................................`);
     res.status(200).json({
         "message": "success"
     })
