@@ -18,7 +18,17 @@ const {
 
 const serverless = require('serverless-http');
 
-const server =  awsserverlessexpress.createServer(app);
+//const server =  awsserverlessexpress.createServer(app);
+
+exports.handler = async (event: any, context: any) => {
+  console.log(`in the handler`);
+  await createDbConnection();
+  console.log(`created connection`);
+  await serverless(app);
+  console.log(`created app server`);
+  await terminateDbConnection();
+  console.log(`terminated connection`);
+} 
 
 // exports.handler = async (event: any, context: any) => {
 //   try{

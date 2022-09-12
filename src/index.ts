@@ -9,12 +9,13 @@ const bodyParser = require('body-parser');
     app.use(bodyParser.json());
 
 app.use("/", graphqlHTTP({
-    graphiql: true,
-    pretty: true
+    schema: schema,
+    graphiql: true
 }));
 
 
 app.use("/rm", graphqlHTTP({
+    schema: schema,
     graphiql: true
 }));
 
