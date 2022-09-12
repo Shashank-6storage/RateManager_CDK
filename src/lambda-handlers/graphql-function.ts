@@ -29,18 +29,24 @@ app.use("/rm", graphqlHTTP({
 }));
 
 if (process.env.SERVER_ENV == 'lambda') {
-  // createConnection({
-  //   type: "mysql",
-  //   database: "RateManager",
-  //   host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
-  //   port: 3306,
-  //   username: "admin",
-  //   password: "8832!2#Zd6pB",
-  //   logging: true,
-  //   synchronize: false,
-  //   entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
-  // });
-  module.exports.handler = serverless();
+  try {
+    createConnection({
+      type: "mysql",
+      database: "RateManager",
+      host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+      port: 3306,
+      username: "admin",
+      password: "8832!2#Zd6pB",
+      logging: true,
+      synchronize: false,
+      entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
+    });
+    
+    module.exports.handler = serverless();
+  }
+  catch (err) {
+    console.error(`Error occured with the connection: ${err}`);
+  }
 }
 else {
   // createConnection({
