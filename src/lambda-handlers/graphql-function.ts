@@ -41,8 +41,8 @@ if (process.env.SERVER_ENV == 'lambda') {
       synchronize: false,
       entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
     });
-    
-    module.exports.handler = serverless();
+
+    module.exports.handler = serverless(app);
   }
   catch (err) {
     console.error(`Error occured with the connection: ${err}`);
