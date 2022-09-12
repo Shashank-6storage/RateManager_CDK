@@ -116,14 +116,4 @@ export const lease_impact = {
     }
 }
 
-export const test_gfun = {
-    type: new GraphQLList(leaseFilter),
-    args: {
-        clientId : { type: GraphQLString }
-    },
-    async resolve() {
-        console.log(`into the gql function`);
-    }
-}
-
 

@@ -1,6 +1,6 @@
 //import { ApolloServer, gql } from 'apollo-server-lambda';
 import * as awsserverlessexpress from 'aws-serverless-express';
-import { createConnection, getConnectionManager } from "typeorm";
+import { Any, createConnection, getConnectionManager } from "typeorm";
 import { Rules, RulesAmplify, RulesCompound, RulesEvalution } from "../schema/entities/Rules";
 import { storageIdentity, Unit } from "../schema/entities/StorageUnit";
 import { Lease } from "../schema/entities/StorageLease";
@@ -8,6 +8,13 @@ import { Tenant, Users } from "../schema/entities/User";
 import { graphqlHTTP } from "express-graphql";
 import { schema } from '../schema/index';
 const app = require('../index');
+const {
+  graphql,
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLNonNull
+} = require('graphql')
 
 const serverless = require('serverless-http');
 
@@ -29,7 +36,10 @@ const serverless = require('serverless-http');
 //   }
 // };
 
-module.exports.handler = serverless(app);
+module.exports = async (event: any, context: any, callback: any) =>  graphql(schema, event.queryStringParameters.query).then(
+  callback(null, {statusCode: 200, body: JSON.stringify('success')}),
+    //err => callback(err)
+)
 
 async function createDbConnection() {
 
