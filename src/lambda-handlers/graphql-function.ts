@@ -36,7 +36,7 @@ const serverless = require('serverless-http');
 //   }
 // };
 
-module.exports = async (event: any, context: any, callback: any) =>  graphql(schema, event.queryStringParameters.query).then(
+module.exports.handler = async (event: any, context: any, callback: any) =>  graphql(schema, event.queryStringParameters.query).then(
   callback(null, {statusCode: 200, body: JSON.stringify('success')}),
     //err => callback(err)
 )
