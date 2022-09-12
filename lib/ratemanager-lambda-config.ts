@@ -45,8 +45,8 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
       },
       isPrivate: false,
       api: {
-        path: `/rm`,
-        methods: "POST"
+        path: `/{proxy+}`,
+        methods: "ANY"
       }
     }
   ];

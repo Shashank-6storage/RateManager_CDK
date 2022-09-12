@@ -9,23 +9,27 @@ import { graphqlHTTP } from "express-graphql";
 import { schema } from '../schema/index';
 const app = require('../index');
 
-const server =  awsserverlessexpress.createServer(app);
+const serverless = require('serverless-http');
 
-exports.handler = async (event: any, context: any) => {
-  try{
+//const server =  awsserverlessexpress.createServer(app);
+
+// exports.handler = async (event: any, context: any) => {
+//   try{
     
-    await createDbConnection();
-    app.post("/rm", graphqlHTTP({
-      schema,
-      graphiql: true
-  }));
-    awsserverlessexpress.proxy(server, event, context);
-    await terminateDbConnection();
-  }
-  catch(error){
-    console.error()
-  }
-};
+//     await createDbConnection();
+//     app.post("/rm", graphqlHTTP({
+//       schema,
+//       graphiql: true
+//   }));
+//     awsserverlessexpress.proxy(server, event, context);
+//     await terminateDbConnection();
+//   }
+//   catch(error){
+//     console.error()
+//   }
+// };
+
+module.exports.handler = serverless(app);
 
 async function createDbConnection() {
 
