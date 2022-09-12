@@ -14,50 +14,47 @@ import { Rules, RulesAmplify, RulesCompound, RulesEvalution } from "../schema/en
 const bodyParser = require('body-parser');
 
 const app = express();
-    app.use(cors());
-    app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.json());
 
 app.use("/", graphqlHTTP({
-    schema: schema,
-    graphiql: true
+  schema: schema,
+  graphiql: true
 }));
 
 
 app.use("/rm", graphqlHTTP({
-    schema: schema,
-    graphiql: true
+  schema: schema,
+  graphiql: true
 }));
 
-if (process.env.SERVER_ENV == 'lambda'){
-    createConnection({
-        type: "mysql",
-        database: "RateManager",
-        host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
-        port: 3306,
-        username: "admin",
-        password: "8832!2#Zd6pB",
-        logging: true,
-        synchronize: false,
-        entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
+async () => {
+  if (process.env.SERVER_ENV == 'lambda') {
+    await createDbConnection();
+    module.exports.handler = serverless();
+  }
+  else {
+    await createDbConnection();
+    app.listen(4000, () => {
+      console.log(`connected on port: 4000`);
     });
 
-    module.exports.handler = serverless()
-}
-else{
-    createConnection({
-        type: "mysql",
-        database: "RateManager",
-        host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
-        port: 3306,
-        username: "admin",
-        password: "8832!2#Zd6pB",
-        logging: true,
-        synchronize: false,
-        entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
-    })
-
-    app.listen(5000, () => {});
+  }
 }
 
 
 //module.exports = app;
+
+const createDbConnection = async () => {
+  await createConnection({
+    type: "mysql",
+    database: "RateManager",
+    host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+    port: 3306,
+    username: "admin",
+    password: "8832!2#Zd6pB",
+    logging: true,
+    synchronize: false,
+    entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
+  })
+}
