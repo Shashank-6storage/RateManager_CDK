@@ -8,14 +8,13 @@ const bodyParser = require('body-parser');
     app.use(cors());
     app.use(bodyParser.json());
 
-app.post("/", graphqlHTTP({
-    schema,
-    graphiql: true
+app.use("/", graphqlHTTP({
+    graphiql: true,
+    pretty: true
 }));
 
 
-app.post("/rm", graphqlHTTP({
-    schema,
+app.use("/rm", graphqlHTTP({
     graphiql: true
 }));
 
