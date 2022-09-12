@@ -6,19 +6,17 @@ export const handler = async (event: any) => {
       
       // console.log(`Event passed to lambda------------------------ : ${JSON.stringify(event)}`);
 
-      // return {
-      //   "statusCode": 200,
-      //   "isBase64Encoded": false,
-      //   "body": JSON.stringify({
-      //     "status": "SUCCESS",
-      //     "message": `Hello from ${event.body.name}`
-      //   }),
-      //   "headers":{
-      //     "Content-Type" : "application/json"
-      //   }
-      // }
-
-      return 'test';
+      return {
+        "statusCode": 200,
+        "isBase64Encoded": false,
+        "body": JSON.stringify({
+          "status": "SUCCESS",
+          "message": `Hello from ${event.body.name}`
+        }),
+        "headers":{
+          "Content-Type" : "application/json"
+        }
+      }
     } catch (error) {
       return {
         "statusCode": 400,
