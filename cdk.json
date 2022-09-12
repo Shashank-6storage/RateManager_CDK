@@ -32,7 +32,7 @@
         "db_host": "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
         "db_port": "3306",
         "db_username": "admin",
-        "db_password": "8832!2#Zd6pB"
+        "db_password": "ODgzMiEyI1pkNnBC"
       },
       {
         "environment": "test",
@@ -42,7 +42,12 @@
         "baseDomain": "6storage.com",
         "apiDomain": "api.6storage.com",
         "hostedZoneId": "Z07325723AQSAZCR16E9L",
-        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef"
+        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef",
+        "db_name": "RateManager",
+        "db_host": "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+        "db_port": "3306",
+        "db_username": "admin",
+        "db_password": "ODgzMiEyI1pkNnBC"
       },
       {
         "environment": "uat",
@@ -52,7 +57,12 @@
         "baseDomain": "6storage.com",
         "apiDomain": "api.6storage.com",
         "hostedZoneId": "Z07325723AQSAZCR16E9L",
-        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef"
+        "regionalCertArn": "arn:aws:acm:us-west-2:760389274302:certificate/e648fbdd-4995-4c88-8469-54689e50f6ef",
+        "db_name": "RateManager",
+        "db_host": "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+        "db_port": "3306",
+        "db_username": "admin",
+        "db_password": "ODgzMiEyI1pkNnBC"
       },
       {
         "environment": "production",

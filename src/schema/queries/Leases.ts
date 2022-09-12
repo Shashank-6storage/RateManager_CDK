@@ -64,7 +64,7 @@ export const lease_filter_record = {
         clientId : { type: GraphQLString }
     },
     async resolve(parent : any, args : any){
-        console.log(`Gql lease_filter_record query invoked`);
+        console.log(`Gql lease_filter_record query invoked: ${args.clientId}`);
         const storageTypeData = await storageIdentity.query("SELECT DISTINCT(SI.storageType) AS value FROM `user_contract` AS UC LEFT JOIN `storage_identity` AS SI ON SI.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"'");
         const locationData = await storageIdentity.query("SELECT DISTINCT(SI.location) AS value FROM `user_contract` AS UC LEFT JOIN `storage_identity` AS SI ON SI.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"'");
         const buildingData = await storageIdentity.query("SELECT DISTINCT(SI.building) AS value FROM `user_contract` AS UC LEFT JOIN `storage_identity` AS SI ON SI.contractNo = UC.contractNo WHERE UC.clientId = '"+args.clientId+"'");
