@@ -1,92 +1,63 @@
-//import { ApolloServer, gql } from 'apollo-server-lambda';
-import * as awsserverlessexpress from 'aws-serverless-express';
-import { Any, createConnection, getConnectionManager } from "typeorm";
-import { Rules, RulesAmplify, RulesCompound, RulesEvalution } from "../schema/entities/Rules";
+import express from "express";
+import { graphqlHTTP } from "express-graphql";
+import cors from "cors";
+import { schema } from '../schema/index';
+import { createConnection } from "typeorm";
 import { storageIdentity, Unit } from "../schema/entities/StorageUnit";
 import { Lease } from "../schema/entities/StorageLease";
 import { Tenant, Users } from "../schema/entities/User";
-import { graphqlHTTP } from "express-graphql";
-import { schema } from '../schema/index';
-const app = require('../index');
-const {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLNonNull
-} = require('graphql')
-
+import { Hook } from "../hook/Hook";
 const serverless = require('serverless-http');
 
-//const server =  awsserverlessexpress.createServer(app);
+import { Rules, RulesAmplify, RulesCompound, RulesEvalution } from "../schema/entities/Rules";
 
-exports.handler = async (event: any, context: any) => {
-  console.log(`in the handler`);
-  await createDbConnection();
-  console.log(`created connection`);
-  await serverless(app);
-  console.log(`created app server`);
-  await terminateDbConnection();
-  console.log(`terminated connection`);
-  
-} 
+const bodyParser = require('body-parser');
 
-// exports.handler = async (event: any, context: any) => {
-//   try{
-    
-//     await createDbConnection();
-//     app.post("/rm", graphqlHTTP({
-//       schema,
-//       graphiql: true
-//   }));
-//     awsserverlessexpress.proxy(server, event, context);
-//     await terminateDbConnection();
-//   }
-//   catch(error){
-//     console.error()
-//   }
-// };
+const app = express();
+    app.use(cors());
+    app.use(bodyParser.json());
 
-// module.exports.handler = async (event: any, context: any, callback: any) =>  graphql(schema, event.queryStringParameters.query).then(
-//   callback(null, {statusCode: 200, body: JSON.stringify('success')}),
-//     //err => callback(err)
-// )
+app.use("/", graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}));
 
-async function createDbConnection() {
 
-  try {
-    await createConnection({
-      type: "mysql",
-      database: process.env.DB_NAME,
-      host: process.env.DB_HOST,
-      port: (process.env.DB_PORT) ? parseInt(process.env.DB_PORT) : 3306,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      logging: true,
-      synchronize: false,
-      entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
+app.use("/rm", graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}));
+
+if (process.env.SERVER_ENV == 'lambda'){
+    createConnection({
+        type: "mysql",
+        database: "RateManager",
+        host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+        port: 3306,
+        username: "admin",
+        password: "8832!2#Zd6pB",
+        logging: true,
+        synchronize: false,
+        entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
     });
 
-    console.log('DB connection created');
-  }
-  catch (error) {
-    console.error(`Failed to connect to database with the exception: ${error}`);
-  }
+    module.exports.handler = serverless(app);
+}
+else{
+    createConnection({
+        type: "mysql",
+        database: "RateManager",
+        host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
+        port: 3306,
+        username: "admin",
+        password: "8832!2#Zd6pB",
+        logging: true,
+        synchronize: false,
+        entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
+    })
+
+    app.listen(5000, () => {});
 }
 
-async function terminateDbConnection() {
 
-  const conn = await getConnectionManager().get();
-  if (conn.isConnected) {
-    conn
-      .close()
-      .then(() => {
-        console.log('DB connection closed');
-      })
-      .catch((err: any) => {
-        console.error('Error closing conn to DB, ', err);
-      });
-  } else {
-    console.log('DB conn already closed.');
-  }
-}
+//module.exports = app;

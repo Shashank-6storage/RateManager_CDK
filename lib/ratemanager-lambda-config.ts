@@ -41,7 +41,8 @@ export const getLambdaDefinitions = (context: CDKContext, stage: string): Lambda
         DB_HOST: context.db_host,
         DB_PORT: context.db_port,
         DB_USERNAME: context.db_username,
-        DB_PASSWORD: context.db_password 
+        DB_PASSWORD: context.db_password,
+        SERVER_ENV: 'lambda'
       },
       isPrivate: false,
       api: {
