@@ -60,20 +60,3 @@ else {
   });
 
 }
-
-
-//module.exports = app;
-
-const createDbConnection = () => {
-  createConnection({
-    type: "mysql",
-    database: "RateManager",
-    host: "ratemanager.ckjoribouy2a.ap-south-1.rds.amazonaws.com",
-    port: 3306,
-    username: "admin",
-    password: "8832!2#Zd6pB",
-    logging: true,
-    synchronize: false,
-    entities: [Rules, RulesEvalution, Unit, Lease, storageIdentity, Users, Tenant]
-  })
-}
