@@ -28,6 +28,7 @@ exports.handler = async (event: any, context: any) => {
   console.log(`created app server`);
   await terminateDbConnection();
   console.log(`terminated connection`);
+  
 } 
 
 // exports.handler = async (event: any, context: any) => {
