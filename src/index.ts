@@ -8,16 +8,16 @@ const bodyParser = require('body-parser');
     app.use(cors());
     app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-    res.json({
-        "message": "hello"
-    })
-});
+app.post("/", graphqlHTTP({
+    schema,
+    graphiql: true
+}));
 
-app.get("/rm", (req, res) => {
-    res.json({
-        "message": "hello"
-    })
-});
+
+app.post("/rm", graphqlHTTP({
+    schema,
+    graphiql: true
+}));
+
 
 module.exports = app;
